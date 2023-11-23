@@ -1,0 +1,16 @@
+main {
+  min-height: 85vh;
+}
+
+header {
+  position: relative;
+  height: 56px;
+}
+
+.navbar-brand {
+  font-family: 'Pacifico', cursive;
+}
+
+#auth {
+  min-height: 100vh;
+}

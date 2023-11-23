@@ -1,115 +1,21 @@
-import promo1 from '@/img/promo1.png'
-import promo2 from '@/img/promo2.png'
-import promo3 from '@/img/promo3.png'
-import promo4 from '@/img/promo4.png'
-
-export default function Home() {
+function SearchPage() {
   return (
-    <main className="pb-3 bg-light">
-
-      <section className="bg-secondary mb-3">
-        <div className="container">
-          <div className="row align-items-center py-3 rounded">
-            <div className="col-12 col-md-8 mb-3">
-              <div id="carouselExampleCaptions" className="carousel slide">
-                <div className="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                </div>
-                <div className="carousel-inner">
-                  <div className="carousel-item active">
-                    <img src={promo1.src} className="d-block w-100 rounded" alt="..." />
-
-                  </div>
-                  <div className="carousel-item">
-                    <img src={promo2.src} className="d-block w-100 rounded" alt="..." />
-
-                  </div>
-                </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                  data-bs-slide="prev">
-                  <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                  data-bs-slide="next">
-                  <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span className="visually-hidden">Next</span>
-                </button>
-              </div>
-            </div>
-            <div className="col 12 col-md-4 border-start">
-              <img src={promo3.src} alt="" className="img-fluid rounded mb-3" />
-              <img src={promo4.src} alt="" className="img-fluid rounded mb-3" />
-            </div>
-          </div>
-        </div>
-      </section>
+    <main className="py-3 bg-light">
 
       <section>
         <div className="container">
-          <div className="row flex-nowrap overflow-auto mb-3">
-            <div className="col-12 col-md-6 col-lg-4">
-              <div className="card text-primary border-primary">
-                <div className="card-body">
-                  <div className="row align-items-center">
-                    <div className="col border-end">
-                      <h3>Gadget</h3>
-                      <a href="#">See more</a>
-                    </div>
-                    <div className="col-4 text-center">
-                      <h1 className="bi bi-tv"></h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-12 col-md-6 col-lg-4">
-              <div className="card text-primary border-primary">
-                <div className="card-body">
-                  <div className="row align-items-center">
-                    <div className="col border-end">
-                      <h3>Books</h3>
-                      <a href="#">See more</a>
-                    </div>
-                    <div className="col-4 text-center">
-                      <h1 className="bi bi-book"></h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-12 col-md-6 col-lg-4">
-              <div className="card text-primary border-primary">
-                <div className="card-body">
-                  <div className="row align-items-center">
-                    <div className="col border-end">
-                      <h3>Foods</h3>
-                      <a href="#">See more</a>
-                    </div>
-                    <div className="col-4 text-center">
-                      <h1 className="bi bi-cup"></h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-12 col-md-6 col-lg-4">
-              <div className="card text-primary border-primary">
-                <div className="card-body">
-                  <div className="row align-items-center">
-                    <div className="col border-end">
-                      <h3>Outfits</h3>
-                      <a href="#">See more</a>
-                    </div>
-                    <div className="col-4 text-center">
-                      <h1 className="bi bi-suitcase"></h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className="card mb-3">
+            <div className="card-body">
+              <form className="input-group">
+                <select name="category" id="category" className="form-select" defaultValue={1}>
+                  <option value="1">Gadgets</option>
+                  <option value="2">Books</option>
+                  <option value="3">Foods</option>
+                  <option value="4">Outfits</option>
+                </select>
+                <input type="search" name="search" id="search" className="form-control" placeholder="Search here..." />
+                <button className="btn btn-primary">Search</button>
+              </form>
             </div>
           </div>
         </div>
@@ -227,5 +133,7 @@ export default function Home() {
       </section>
 
     </main>
-  )
+  );
 }
+
+export default SearchPage;
