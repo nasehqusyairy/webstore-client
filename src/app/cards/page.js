@@ -7,7 +7,7 @@ function CardPage() {
       <h1>Credit/Debit</h1>
       <hr/>
       <div className="mb-3">
-        <button href="./payment-method-form.html" className="btn btn-primary">New Card</button>
+        <button className="btn btn-primary">New Card</button>
       </div>
       <div className="card">
         <div className="card-body">
@@ -33,8 +33,8 @@ function CardPage() {
                   <td>123</td>
                   <td>123 Main St, New York, NY 10030</td>
                   <td>
-                    <button href="./payment-method-form.html" className="btn btn-sm btn-warning mb-3">Edit</button>
-                    <button href="#" className="btn btn-sm btn-danger mb-3">Delete</button>
+                    <button className="btn btn-sm btn-warning mb-3">Edit</button>
+                    <button className="btn btn-sm btn-danger mb-3">Delete</button>
                   </td>
                 </tr>
               </tbody>

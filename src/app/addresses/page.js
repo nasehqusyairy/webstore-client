@@ -6,7 +6,7 @@ function AddressPage(){
       <hr>
       </hr>
       <div className="mb-3">
-        <a href="./shipping-address-form.html" class="btn btn-primary">New Address</a>
+        <button className="btn btn-primary">New Address</button>
       </div>
       <div className="card">
         <div className="card-body">
@@ -36,8 +36,8 @@ function AddressPage(){
                   <td>65149</td>
                   <td>Indonesia</td>
                   <td>
-                    <button href="./payment-method-form.html" className="btn btn-sm btn-warning mb-3">Edit</button>
-                    <button href="#" className="btn btn-sm btn-danger mb-3">Delete</button>
+                    <button className="btn btn-sm btn-warning mb-3">Edit</button>
+                    <button className="btn btn-sm btn-danger mb-3">Delete</button>
                   </td>
                 </tr>
                 <tr>
@@ -50,8 +50,8 @@ function AddressPage(){
                   <td>65144</td>
                   <td>Indonesia</td>
                   <td>
-                    <a href="./payment-method-form.html" class="btn btn-sm btn-warning mb-3">Edit</a>
-                    <a href="#" class="btn btn-sm btn-danger mb-3">Delete</a>
+                    <button className="btn btn-sm btn-warning mb-3">Edit</button>
+                    <button className="btn btn-sm btn-danger mb-3">Delete</button>
                   </td>
                 </tr>
               </tbody>
