@@ -1,4 +1,4 @@
-function SearchPage() {
+export default function SearchPage() {
   return (
     <main className="py-3 bg-light">
 
@@ -135,5 +135,3 @@ function SearchPage() {
     </main>
   );
 }
-
-export default SearchPage;
