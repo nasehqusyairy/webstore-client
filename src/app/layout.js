@@ -7,6 +7,7 @@ import PageFooter from '@/components/pageFooter'
 import Script from 'next/script'
 import logo from '@/img/logo.jpg'
 import { usePathname } from 'next/navigation'
+import RootStateContainer from '@/context/RootStateContext'
 
 export default function RootLayout({ children }) {
 
@@ -17,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <title>Weboender | Laravel Class BootCamp 2023</title>
+        <title>Weboender Store | Client</title>
 
         {/* Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,17 +29,13 @@ export default function RootLayout({ children }) {
         <link rel="shortcut icon" href={logo.src} type="image/x-icon" />
 
       </head>
-      <body className={isAuthPage ? 'bg-primary' : 'bg-light'}>
+      <body>
 
-        {!isAuthPage && (
-          <Navbar></Navbar>
-        )}
-
-        {children}
-
-        {!isAuthPage && (
-          <PageFooter></PageFooter>
-        )}
+        <RootStateContainer>
+          {!isAuthPage && <Navbar />}
+          {children}
+          {!isAuthPage && <PageFooter />}
+        </RootStateContainer>
 
         {/* Script */}
         <Script src="/assets/js/bootstrap.bundle.min.js"></Script>

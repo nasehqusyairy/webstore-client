@@ -30,11 +30,11 @@ function RegisterPage() {
                   <label htmlFor="verify_password">Verify Password</label>
                   <input type="password" name="verify_password" id="verify_password" className="form-control" required />
                 </div>
-                <div className="d-grid gap-2">
+                <div className="d-grid gap-2 text-center">
                   <button className="btn btn-primary">Submit</button>
-                  <p className="text-center">
+                  <span>
                     Already have an account? <Link href="/auth">Sign In</Link>
-                  </p>
+                  </span>
                 </div>
               </form>
             </div>

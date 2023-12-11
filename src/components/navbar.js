@@ -1,27 +1,25 @@
 import Link from "next/link";
 import logo from "@/img/logo.jpg";
 import Image from "next/image";
-import Swal from "sweetalert2";
+import { useRootState } from "@/context/RootStateContext";
+import LogOutModal, { LogoutButton } from "./logOutModal";
 
 function Navbar() {
 
-  const handleLogout = () => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You will be logged out of the system!",
-      icon: 'warning',
-      confirmButtonColor: '#82C3C5',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, log me out!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (window) {
-          window.location.href = '/auth/'
-        }
-      }
-    })
+  const { globalState, setGlobalState } = useRootState();
+
+  const refreshData = () => {
+    const newState = { ...globalState };
+    newState['products'] = undefined;
+    newState['categories'] = undefined;
+    newState['sponsors'] = undefined;
+    newState['shippings'] = undefined;
+    if (newState.user) {
+      newState.user['orders'] = undefined;
+      newState.user['cards'] = undefined;
+      newState.user['addresses'] = undefined;
+    }
+    setGlobalState(newState)
   }
 
   return (
@@ -42,31 +40,44 @@ function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" href="/search">Search</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="/cart">Cart</Link>
-              </li>
 
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                  John Doe
-                </a>
-                <ul className="dropdown-menu">
-                  <li><Link className="dropdown-item" href="/profile">My Profile</Link></li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li><Link className="dropdown-item" href="/cards">Credit/Debit</Link></li>
-                  <li><Link className="dropdown-item" href="/addresses">Shipping Addresses</Link></li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li><button onClick={handleLogout} className="dropdown-item">Sign Out</button></li>
-                </ul>
+              {globalState.user !== undefined ||
+                <li className="nav-item">
+                  <Link className="nav-link" href="/auth">Sign In</Link>
+                </li>}
+
+              {globalState.user !== undefined &&
+                <li className="nav-item">
+                  <Link className="nav-link" href="/cart">Cart</Link>
+                </li>}
+
+              {globalState.user !== undefined &&
+                <li className="nav-item dropdown">
+                  <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    {globalState.user?.name}
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li><Link className="dropdown-item" href="/profile">My Profile</Link></li>
+                    <li><Link className="dropdown-item" href="/myorders">My Orders</Link></li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li><Link className="dropdown-item" href="/cards">Credit/Debit Cards</Link></li>
+                    <li><Link className="dropdown-item" href="/addresses">Shipping Addresses</Link></li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li><LogoutButton className="dropdown-item"></LogoutButton></li>
+                  </ul>
+                </li>}
+              <li className="nav-item">
+                <button type="button" onClick={refreshData} className="btn btn-primary">Refresh</button>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+      <LogOutModal />
     </header>
   );
 }

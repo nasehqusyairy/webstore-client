@@ -1,49 +1,46 @@
+'use client'
+import CardModal from '@/components/datatables/cards/cardModal';
+import CardsTable from '@/components/datatables/cards/table';
+import DeleteDataTableModal from '@/components/deleteModal';
+import ErrorMessage from '@/components/errorMessage';
+import NameFilter from '@/components/filterForm';
+import { ModalButton } from '@/components/fomModal';
+import RefreshButton from '@/components/refreshButton';
+import DataTableStateContainer from '@/context/DataTableContext';
+import { useRootState } from '@/context/RootStateContext';
 
-function CardPage() {
-    return(
+export default function CardsPage() {
 
-        <main className="py-3 bg-light">
-    <div className="container">
-      <h1>Credit/Debit</h1>
-      <hr/>
-      <div className="mb-3">
-        <button className="btn btn-primary">New Card</button>
-      </div>
-      <div className="card">
-        <div className="card-body">
-          <div className="table-responsive">
-            <table className="table table-striped table-hover align-middle">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Card Number</th>
-                  <th>Expiry Date</th>
-                  <th>CVV</th>
-                  <th>Address</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Joe Doe</td>
-                  <td>1234 5678 9012 3456</td>
-                  <td>12/24</td>
-                  <td>123</td>
-                  <td>123 Main St, New York, NY 10030</td>
-                  <td>
-                    <button className="btn btn-sm btn-warning mb-3">Edit</button>
-                    <button className="btn btn-sm btn-danger mb-3">Delete</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+  const { error } = useRootState();
+
+  const index = 'cards'
+  const singular = 'card'
+
+  return (
+    <main className="py-3 bg-light">
+      <div className="container">
+        <h1>Cards</h1>
+        <hr />
+        <DataTableStateContainer index={index}>
+          <div className="row">
+            <div className="col-12 mb-3">
+              <div className="mb-3">
+                <ModalButton singular={singular}></ModalButton>
+                <RefreshButton index={index} isUserData={true} />
+              </div>
+              {error && <ErrorMessage />}
+              <div className="card">
+                <div className="card-body">
+                  <NameFilter index={index} isUserData={true} />
+                  <CardsTable singular={singular} index={index} />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+          <CardModal />
+          <DeleteDataTableModal isUserData={true} index={index} singular={singular}></DeleteDataTableModal>
+        </DataTableStateContainer>
       </div>
-      </div>
-  </main>
-    );
+    </main>
+  );
 }
-export default CardPage;

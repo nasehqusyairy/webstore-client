@@ -1,46 +1,41 @@
 'use client'
-import AddressModal from '@/components/datatables/addresses/addressModal';
-import AddressesTable from '@/components/datatables/addresses/table';
+import OrderFilter from '@/components/datatables/orders/filter';
+import OrdersTable from '@/components/datatables/orders/table';
 import DeleteDataTableModal from '@/components/deleteModal';
-import ErrorMessage from '@/components/errorMessage';
-import FilterForm from '@/components/filterForm';
-import { ModalButton } from '@/components/fomModal';
+import ErrorMessage from '@/components/errorMessage'
 import RefreshButton from '@/components/refreshButton';
 import DataTableStateContainer from '@/context/DataTableContext';
 import { useRootState } from '@/context/RootStateContext';
 
-export default function AddressesPage() {
-
+function OrdersPage() {
   const { error } = useRootState();
-
-  const index = 'addresses'
-  const singular = 'address'
-
+  const index = 'orders';
+  const singular = 'order';
   return (
     <main className="py-3 bg-light">
       <div className="container">
-        <h1>Addresses</h1>
+        <h1>My Orders</h1>
         <hr />
         <DataTableStateContainer index={index}>
           <div className="row">
             <div className="col-12 mb-3">
               <div className="mb-3">
-                <ModalButton singular={singular}></ModalButton>
-                <RefreshButton index={index} isUserData={true} />
+                <RefreshButton index={index} isUserData={true}></RefreshButton>
               </div>
               {error && <ErrorMessage />}
               <div className="card">
                 <div className="card-body">
-                  <FilterForm index={index} isUserData={true} />
-                  <AddressesTable singular={singular} index={index} />
+                  <OrderFilter />
+                  <OrdersTable index={index} singular={singular}></OrdersTable>
                 </div>
               </div>
             </div>
           </div>
-          <AddressModal />
-          <DeleteDataTableModal isUserData={true} index={index} singular={singular}></DeleteDataTableModal>
+          <DeleteDataTableModal index={index} singular={singular}></DeleteDataTableModal>
         </DataTableStateContainer>
       </div>
     </main>
   );
 }
+
+export default OrdersPage;

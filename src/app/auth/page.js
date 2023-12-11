@@ -1,32 +1,53 @@
+'use client'
+import ErrorMessage from "@/components/errorMessage";
+import { useRootState } from "@/context/RootStateContext";
+import http from "@/helpers/http";
+import { useState } from "react";
 import Link from "next/link";
 
 function LoginPage() {
+
+  const { setGlobalState, error, setError } = useRootState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
+  const login = (e) => {
+    e.preventDefault()
+    setIsSending(true)
+    setError('')
+    http.post('/login', { email, password })
+      .then(({ data }) => {
+        setGlobalState({ user: data.user, token: data.token })
+      })
+      .catch((err) => {
+        console.log(err);
+        setError((err.response?.data.message || err.message) + ` (${err.response?.status})`)
+        setIsSending(false)
+      })
+  }
+
   return (
     <div className="container">
       <div className="row justify-content-center align-items-center" id="auth">
         <div className="col-12 col-md-6 col-lg-4">
           <div className="card">
             <div className="card-body">
-              <form>
-                <h3>Sign In<i class="bi bi-airplane"></i></h3>
+              <form onSubmit={login}>
+                <h3>Sign In</h3>
                 <hr />
-                <div className="alert alert-primary alert-dismissible fade show" role="alert">
-                  You have successfully registered
-                  <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                {error && <ErrorMessage />}
                 <div className="mb-3">
                   <label htmlFor="email">Email</label>
-                  <input type="email" name="email" id="email" className="form-control" />
+                  <input required type="email" name="email" id="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="password">Password</label>
-                  <input type="password" name="password" id="password" className="form-control" />
+                  <input required type="password" name="password" id="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <div className="d-grid gap-2">
-                  <button className="btn btn-primary">Submit</button>
-                  <p className="text-center">
-                    Don't have an account yet? <Link href="/auth/register">Sign Up</Link>
-                  </p>
+                <div className="d-grid gap-2 text-center">
+                  <button disabled={isSending} className="btn btn-primary">{isSending ? 'Checking...' : 'Login'}</button>
+                  <span>Don't have an account yet? <Link href='/auth/register'>Sign Up</Link></span>
                 </div>
               </form>
             </div>
