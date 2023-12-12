@@ -57,22 +57,22 @@ function Navbar() {
                     {globalState.user?.name}
                   </a>
                   <ul className="dropdown-menu">
-                    <li><Link className="dropdown-item" href="/profile">My Profile</Link></li>
-                    <li><Link className="dropdown-item" href="/myorders">My Orders</Link></li>
+                    <li><Link className="dropdown-item" href="/profile">Profile</Link></li>
+                    <li><Link className="dropdown-item" href="/myorders">Orders</Link></li>
                     <li>
                       <hr className="dropdown-divider" />
                     </li>
-                    <li><Link className="dropdown-item" href="/cards">Credit/Debit Cards</Link></li>
-                    <li><Link className="dropdown-item" href="/addresses">Shipping Addresses</Link></li>
+                    <li><Link className="dropdown-item" href="/cards">Cards</Link></li>
+                    <li><Link className="dropdown-item" href="/addresses">Addresses</Link></li>
                     <li>
                       <hr className="dropdown-divider" />
+                    </li>
+                    <li>
+                      <button onClick={refreshData} className="dropdown-item">Refresh</button>
                     </li>
                     <li><LogoutButton className="dropdown-item"></LogoutButton></li>
                   </ul>
                 </li>}
-              <li className="nav-item">
-                <button type="button" onClick={refreshData} className="btn btn-primary">Refresh</button>
-              </li>
             </ul>
           </div>
         </div>
