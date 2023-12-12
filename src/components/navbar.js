@@ -58,7 +58,7 @@ function Navbar() {
                   </a>
                   <ul className="dropdown-menu">
                     <li><Link className="dropdown-item" href="/profile">Profile</Link></li>
-                    <li><Link className="dropdown-item" href="/myorders">Orders</Link></li>
+                    <li><Link className="dropdown-item" href="/orders">Orders</Link></li>
                     <li>
                       <hr className="dropdown-divider" />
                     </li>

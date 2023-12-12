@@ -60,7 +60,7 @@ export default function OrdersTable({ index }) {
       name: 'Actions',
       cell: row => (
         <>
-          <Link className='btn btn-info btn-sm me-1' href={`/myorders/${row.id}/`}><i className="bi bi-eye"></i></Link>
+          <Link className='btn btn-info btn-sm me-1' href={`/orders/${row.id}/`}><i className="bi bi-eye"></i></Link>
         </>
       )
     },
